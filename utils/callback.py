@@ -2,6 +2,9 @@ from stable_baselines3.common.callbacks import BaseCallback
 
 
 class RenderCallback(BaseCallback):
+    '''
+    Callback to render the environment every render_freq steps
+    '''
     def __init__(self, render_freq):
         super(RenderCallback, self).__init__()
         self.render_freq = render_freq

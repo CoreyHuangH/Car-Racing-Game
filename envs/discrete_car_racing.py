@@ -3,6 +3,14 @@ from gymnasium.spaces import Discrete
 
 
 class DiscreteCarRacing(gym.Wrapper):
+    '''
+    Wrapper for the CarRacing environment that simplifies the action space to 5 discrete actions:
+    0: No action
+    1: Accelerate
+    2: Turn left
+    3: Turn right
+    4: Brake
+    '''
     def __init__(self, env):
         super().__init__(env)
         self.action_space = Discrete(5)  # Simplified action space: 5 discrete actions

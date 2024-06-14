@@ -44,7 +44,7 @@ def main():
         verbose=1,
         buffer_size=50000,
         learning_starts=1000,
-        batch_size=256, 
+        batch_size=512, 
         gamma=0.99,
         train_freq=2,
         target_update_interval=1000,
@@ -60,19 +60,19 @@ def main():
         env,
         best_model_save_path="./logs/",
         log_path="./logs/",
-        eval_freq=500,
+        eval_freq=1000,
         deterministic=True,
         render=False,
     )
 
     # Create RenderCallback to render the environment
-    render_callback = RenderCallback(render_freq=1000)
+    render_callback = RenderCallback(render_freq=2000)
 
     # Create CallbackList
     callback = CallbackList([eval_callback, render_callback])
 
     # Train model
-    model.learn(total_timesteps=2000000, callback=callback)
+    model.learn(total_timesteps=2500000, callback=callback)
 
     # Save model
     model.save("./model/dqn_car_racing")
