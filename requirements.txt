@@ -5,3 +5,4 @@ stable-baselines3
 torch
 numpy
 opencv-python==4.5.5.64
+tensorboard
