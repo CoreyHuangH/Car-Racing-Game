@@ -48,9 +48,9 @@ def main():
         CustomResNetPolicy,
         env,
         verbose=1,
-        buffer_size=50000,
+        buffer_size=100000,
         learning_starts=1000,
-        batch_size=512,
+        batch_size=4096,
         gamma=0.99,
         train_freq=2,
         target_update_interval=1000,
@@ -67,13 +67,13 @@ def main():
         env,
         best_model_save_path="./logs/",
         log_path="./logs/",
-        eval_freq=1000,
+        eval_freq=5000,
         deterministic=True,
         render=False,
     )
 
     # Create RenderCallback to render the environment
-    render_callback = RenderCallback(render_freq=2000)
+    render_callback = RenderCallback(render_freq=5000)
 
     # Create CallbackList
     callback = CallbackList([eval_callback, render_callback])
