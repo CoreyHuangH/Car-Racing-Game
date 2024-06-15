@@ -56,7 +56,7 @@ def main():
         target_update_interval=2000,
         exploration_fraction=0.1,
         exploration_final_eps=0.01,
-        learning_rate=1e-4,
+        learning_rate=5e-5,
         tensorboard_log="./tf-logs/",
         device=device,
         policy_kwargs=policy_kwargs,
