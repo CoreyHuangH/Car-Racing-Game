@@ -10,10 +10,10 @@ from stable_baselines3.common.monitor import Monitor
 
 from envs.discrete_car_racing import DiscreteCarRacing
 from utils.callback import RenderCallback
+from policy.custom_policy import *
 
 
 def main():
-    # Set CUDA_VISIBLE_DEVICES
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
     # Create environment
@@ -37,23 +37,30 @@ def main():
     else:
         device = torch.device("cpu")
 
+    # Define the policy kwargs with the custom features extractor
+    policy_kwargs = dict(
+        features_extractor_class=CustomResNet18,
+        features_extractor_kwargs=dict(features_dim=4),
+    )
+
     # Create model
     model = DQN(
-        "CnnPolicy",
+        CustomResNetPolicy,
         env,
         verbose=1,
         buffer_size=50000,
         learning_starts=1000,
-        batch_size=512, 
+        batch_size=512,
         gamma=0.99,
         train_freq=2,
         target_update_interval=1000,
         exploration_fraction=0.1,
         exploration_final_eps=0.02,
+        learning_rate=2e-5,
         tensorboard_log="./tf-logs/",
         device=device,
+        policy_kwargs=policy_kwargs,
     )
-
 
     # Create EvalCallback to evaluate the model and save the best one
     eval_callback = EvalCallback(
@@ -72,7 +79,7 @@ def main():
     callback = CallbackList([eval_callback, render_callback])
 
     # Train model
-    model.learn(total_timesteps=2500000, callback=callback)
+    model.learn(total_timesteps=7500000, callback=callback)
 
     # Save model
     model.save("./model/dqn_car_racing")
