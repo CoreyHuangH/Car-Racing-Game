@@ -67,13 +67,13 @@ def main():
         env,
         best_model_save_path="./logs/",
         log_path="./logs/",
-        eval_freq=4000,
+        eval_freq=500,
         deterministic=True,
         render=False,
     )
 
     # Create RenderCallback to render the environment
-    render_callback = RenderCallback(render_freq=4000)
+    render_callback = RenderCallback(render_freq=5000)
 
     # Create CallbackList
     callback = CallbackList([eval_callback, render_callback])
