@@ -50,7 +50,7 @@ def main():
         verbose=1,
         buffer_size=100000,
         learning_starts=1000,
-        batch_size=4096,
+        batch_size=16384,
         gamma=0.99,
         train_freq=2,
         target_update_interval=1000,
