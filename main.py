@@ -49,7 +49,7 @@ def main():
         env,
         verbose=1,
         buffer_size=1000000,
-        learning_starts=1000,
+        learning_starts=10000,
         batch_size=2048,
         gamma=0.99,
         train_freq=4,
