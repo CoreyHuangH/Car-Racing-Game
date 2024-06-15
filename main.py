@@ -56,7 +56,7 @@ def main():
         target_update_interval=1000,
         exploration_fraction=0.1,
         exploration_final_eps=0.02,
-        learning_rate=2e-5,
+        learning_rate=5e-5,
         tensorboard_log="./tf-logs/",
         device=device,
         policy_kwargs=policy_kwargs,
@@ -79,7 +79,7 @@ def main():
     callback = CallbackList([eval_callback, render_callback])
 
     # Train model
-    model.learn(total_timesteps=7500000, callback=callback)
+    model.learn(total_timesteps=6000000, callback=callback)
 
     # Save model
     model.save("./model/dqn_car_racing")
