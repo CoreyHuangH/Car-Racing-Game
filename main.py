@@ -10,7 +10,6 @@ from stable_baselines3.common.monitor import Monitor
 
 from envs.discrete_car_racing import DiscreteCarRacing
 from utils.callback import RenderCallback
-from policy.custom_policy import *
 
 
 def main():
@@ -37,15 +36,10 @@ def main():
     else:
         device = torch.device("cpu")
 
-    # Define the policy kwargs with the custom features extractor
-    policy_kwargs = dict(
-        features_extractor_class=CustomResNet18,
-        features_extractor_kwargs=dict(features_dim=4),
-    )
 
     # Create model
     model = DQN(
-        CustomResNetPolicy,
+        "CnnPolicy",
         env,
         verbose=1,
         buffer_size=1000000,
@@ -56,10 +50,9 @@ def main():
         target_update_interval=5000,
         exploration_fraction=0.1,
         exploration_final_eps=0.01,
-        learning_rate=1e-4,
+        learning_rate=5e-5,
         tensorboard_log="./tf-logs/",
         device=device,
-        policy_kwargs=policy_kwargs,
     )
 
     # Create EvalCallback to evaluate the model and save the best one
@@ -67,7 +60,7 @@ def main():
         env,
         best_model_save_path="./logs/",
         log_path="./logs/",
-        eval_freq=500,
+        eval_freq=1000,
         deterministic=True,
         render=False,
     )
@@ -79,7 +72,7 @@ def main():
     callback = CallbackList([eval_callback, render_callback])
 
     # Train model
-    model.learn(total_timesteps=6000000, callback=callback)
+    model.learn(total_timesteps=3500000, callback=callback)
 
     # Save model
     model.save("./model/dqn_car_racing")
