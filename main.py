@@ -36,7 +36,6 @@ def main():
     else:
         device = torch.device("cpu")
 
-
     # Create model
     model = DQN(
         "CnnPolicy",
