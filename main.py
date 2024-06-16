@@ -87,7 +87,7 @@ def main():
     # Load model
     model = DQN.load("./model/dqn_car_racing", env=env)
 
-    # Test model and save rendered frames as video
+    # Render model to video
     obs = env.reset()
     os.makedirs("./rendered_videos", exist_ok=True)
     video_writer = cv2.VideoWriter(
