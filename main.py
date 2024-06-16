@@ -43,12 +43,12 @@ def main():
         verbose=1,
         buffer_size=1000000,
         learning_starts=50000,
-        batch_size=2048,
+        batch_size=4096,
         gamma=0.99,
         train_freq=4,
         target_update_interval=5000,
         exploration_fraction=0.1,
-        exploration_final_eps=0.01,
+        exploration_final_eps=0.02,
         learning_rate=1e-4,
         tensorboard_log="./tf-logs/",
         device=device,
@@ -71,7 +71,7 @@ def main():
     callback = CallbackList([eval_callback, render_callback])
 
     # Train model
-    model.learn(total_timesteps=3500000, callback=callback)
+    model.learn(total_timesteps=4000000, callback=callback)
 
     # Save model
     model.save("./model/dqn_car_racing")
