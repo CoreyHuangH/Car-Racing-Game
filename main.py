@@ -57,7 +57,7 @@ def main():
     # Create EvalCallback to evaluate the model and save the best one
     eval_callback = EvalCallback(
         env,
-        best_model_save_path="./logs/",
+        best_model_save_path="./models/",
         log_path="./logs/",
         eval_freq=1000,
         deterministic=True,
@@ -71,19 +71,19 @@ def main():
     callback = CallbackList([eval_callback, render_callback])
 
     # Train model
-    model.learn(total_timesteps=4000000, callback=callback)
+    model.learn(total_timesteps=5000000, callback=callback)
 
     # Save model
-    model.save("./model/dqn_car_racing")
+    model.save("./models/final_model")
 
-    # Load model
-    model = DQN.load("./model/dqn_car_racing", env=env)
+    # Load final model
+    model = DQN.load("./models/final_model", env=env)
 
-    # Render model to video
+    # Render final model to video
     obs = env.reset()
     os.makedirs("./rendered_videos", exist_ok=True)
     video_writer = cv2.VideoWriter(
-        "./rendered_videos/car_racing.avi",
+        "./rendered_videos/car_racing_final_model.avi",
         cv2.VideoWriter_fourcc(*"MJPG"),
         30,
         (env.render().shape[1], env.render().shape[0]),
