@@ -1,11 +1,20 @@
 import gradio as gr
-from video_viewer import show_videos
+from viewer import show_videos_and_score
+
+# Define the scores, this can be found in tensorboard logs
+final_model_score = 902.5
+best_model_score = 919.9
 
 # Define the Gradio interface
 interface = gr.Interface(
-    fn=show_videos,
+    fn=show_videos_and_score,
     inputs=[],
-    outputs=[gr.Video(label="Final Model Video"), gr.Video(label="Best Model Video")],
+    outputs=[
+        gr.Video(label="Final Model Video"),
+        gr.Textbox(label="Final Model Score"),
+        gr.Video(label="Best Model Video"),
+        gr.Textbox(label="Best Model Score"),
+    ],
     title="Car Racing Videos Demo",
     description="This demo shows the final and best model videos of the Car Racing environment.",
 )
