@@ -12,7 +12,7 @@ interface = gr.Interface(
         gr.Textbox(label="Best Model Score", value="919.9"),
     ],
     title="Car Racing Videos Demo",
-    description="This demo shows the final and best model videos of the Car Racing environment.",
+    description="This demo shows the final and best model videos and scores of the Car Racing environment.",
 )
 
 if __name__ == "__main__":
