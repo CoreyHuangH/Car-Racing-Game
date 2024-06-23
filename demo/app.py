@@ -1,9 +1,9 @@
 import gradio as gr
-from viewer import show_videos_and_score
+from viewer import show_videos_and_scores
 
 # Define the Gradio interface
 interface = gr.Interface(
-    fn=show_videos_and_score,
+    fn=show_videos_and_scores,
     inputs=[],
     outputs=[
         gr.Video(label="Final Model Video", value="./rendered_videos/car_racing_final_model.avi"),
