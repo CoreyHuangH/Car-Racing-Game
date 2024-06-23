@@ -1,10 +1,6 @@
 import gradio as gr
 from viewer import show_videos_and_score
 
-# Define the scores, this can be found in tensorboard logs
-final_model_score = 902.5
-best_model_score = 919.9
-
 # Define the Gradio interface
 interface = gr.Interface(
     fn=show_videos_and_score,
