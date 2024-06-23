@@ -1,7 +1,7 @@
 # Car-Racing-Game
 My Intern Project 2 @USTC: Reinforcement learning for car racing game
 
-## Huggingface space:
+## Get the demo from Huggingface Space:
 ```
 git clone https://huggingface.co/spaces/CoreyHuangH/Car-Racing-Game
 ```
